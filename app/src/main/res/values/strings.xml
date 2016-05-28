@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">StrvAcademyWeather</string>
+    <string name="hint_city_input">Location</string>
+    <string name="button_find_weather">Find weather</string>
 </resources>
