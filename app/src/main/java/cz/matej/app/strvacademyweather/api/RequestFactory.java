@@ -4,6 +4,7 @@ import java.util.Map;
 
 import cz.matej.app.strvacademyweather.api.listener.RequestListener;
 import cz.matej.app.strvacademyweather.entity.CurrentWeatherEntity;
+import cz.matej.app.strvacademyweather.entity.UnitsFormat;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -69,7 +70,7 @@ public class RequestFactory implements ApiConfig
 
 	private Map<String, String> getCurrentWeatherQueryMap(String location)
 	{
-		return new QueryBuilder().addAppId(APP_ID).addLocation(location).getQueryMap();
+		return new QueryBuilder().addAppId(APP_ID).addLocation(location).addUnitsFormat(UnitsFormat.METRIC).getQueryMap();
 	}
 
 }

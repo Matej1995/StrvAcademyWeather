@@ -11,6 +11,9 @@ import cz.matej.app.strvacademyweather.entity.CurrentWeatherEntity;
 
 public class WeatherFragment extends BaseFragment implements RequestListener<CurrentWeatherEntity>
 {
+
+	public static final String TAG = WeatherFragment.class.toString();
+
 	public static WeatherFragment getInstance(String location)
 	{
 		WeatherFragment fragment = new WeatherFragment();
@@ -44,7 +47,7 @@ public class WeatherFragment extends BaseFragment implements RequestListener<Cur
 	@Override
 	public void onResponse(CurrentWeatherEntity entity)
 	{
-		sample.setText(entity.getWeather().get(0).getDescription());
+		sample.setText(String.valueOf(entity.getMain().getTemp()));
 	}
 
 
