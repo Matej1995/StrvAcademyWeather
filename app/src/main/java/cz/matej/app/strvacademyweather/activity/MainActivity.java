@@ -1,7 +1,10 @@
-package cz.matej.app.strvacademyweather;
+package cz.matej.app.strvacademyweather.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import cz.matej.app.strvacademyweather.R;
+
 
 public class MainActivity extends AppCompatActivity {
 
