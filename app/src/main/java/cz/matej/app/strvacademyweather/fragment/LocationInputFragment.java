@@ -37,7 +37,7 @@ public class LocationInputFragment extends BaseFragment
 			{
 				if(actionId == EditorInfo.IME_ACTION_DONE)
 				{
-					isEmpty(mLocationInput);
+					findWeather();
 					return true;
 				}
 				return false;
@@ -60,20 +60,9 @@ public class LocationInputFragment extends BaseFragment
 		return R.layout.fragment_location_input;
 	}
 
-	public void isEmpty(TextInputEditText mLocationInput)
-	{
-		if(!mLocationInput.getText().toString().isEmpty())
-		{
-			findWeather();
-		}
-		else
-		{
-			Toast.makeText(getActivity(), "Ahojky musíš zadat nějaké město",Toast.LENGTH_LONG).show();
-		}
-	}
-
 	public void findWeather()
 	{
+		if(!mLocationInput.getText().toString().isEmpty()){
 		getActivity()
 				.getSupportFragmentManager()
 				.beginTransaction()
@@ -82,6 +71,8 @@ public class LocationInputFragment extends BaseFragment
 				.commit();
 
 		mLocationInput.setText("");
+		}else{	Toast.makeText(getActivity(), "Ahojky musíš zadat nějaké město",Toast.LENGTH_LONG).show();
+		}
 	}
 
 
