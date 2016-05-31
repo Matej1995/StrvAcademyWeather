@@ -6,6 +6,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import cz.matej.app.strvacademyweather.R;
 
@@ -36,7 +37,7 @@ public class LocationInputFragment extends BaseFragment
 			{
 				if(actionId == EditorInfo.IME_ACTION_DONE)
 				{
-					findWeather();
+					isEmpty(mLocationInput);
 					return true;
 				}
 				return false;
@@ -59,6 +60,17 @@ public class LocationInputFragment extends BaseFragment
 		return R.layout.fragment_location_input;
 	}
 
+	public void isEmpty(TextInputEditText mLocationInput)
+	{
+		if(!mLocationInput.getText().toString().isEmpty())
+		{
+			findWeather();
+		}
+		else
+		{
+			Toast.makeText(getActivity(), "Ahojky musíš zadat nějaké město",Toast.LENGTH_LONG).show();
+		}
+	}
 
 	public void findWeather()
 	{
