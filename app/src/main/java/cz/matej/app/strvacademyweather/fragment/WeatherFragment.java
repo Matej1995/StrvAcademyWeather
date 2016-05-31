@@ -27,13 +27,20 @@ public class WeatherFragment extends BaseFragment implements RequestListener<Cur
 	}
 
 
-	private TextView sample;
-
+	private TextView Humidity;
+	private TextView Temp;
+	private TextView Pressure;
+	private TextView TempMax;
+	private TextView TempMin;
 
 	@Override
 	public void initComponents()
 	{
-		this.sample = (TextView) getRootView().findViewById(R.id.sample);
+		this.Humidity = (TextView) getRootView().findViewById(R.id.Humidity);
+		this.Temp = (TextView) getRootView().findViewById(R.id.Temp);
+		this.Pressure = (TextView) getRootView().findViewById(R.id.Pressure);
+		this.TempMax = (TextView) getRootView().findViewById(R.id.TempMax);
+		this.TempMin = (TextView) getRootView().findViewById(R.id.TempMin);
 	}
 
 
@@ -47,9 +54,13 @@ public class WeatherFragment extends BaseFragment implements RequestListener<Cur
 	@Override
 	public void onResponse(CurrentWeatherEntity entity)
 	{
-		sample.setText(String.valueOf(entity.getMain().getTemp()));
-	}
+		Humidity.setText(String.valueOf(entity.getMain().getHumidity()));
+		Temp.setText(String.valueOf(entity.getMain().getTemp()));
+		Pressure.setText(String.valueOf(entity.getMain().getPressure()));
+		TempMax.setText(String.valueOf(entity.getMain().getTempMax()));
+		TempMin.setText(String.valueOf(entity.getMain().getTempMin()));
 
+	}
 
 	private void parseBundle()
 	{

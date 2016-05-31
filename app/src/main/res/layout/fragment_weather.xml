@@ -1,12 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 			  android:layout_width="match_parent"
 			  android:layout_height="match_parent"
-			  android:orientation="vertical">
+				android:weightSum="1"
+				android:orientation="vertical">
+
+	<ImageView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:id="@+id/imageView"
+		android:src="@mipmap/ic_launcher"
+		android:layout_below="@+id/TempMin"
+		android:layout_alignParentStart="true"
+		android:layout_marginStart="44dp" />
 
 	<TextView
 		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:id="@+id/sample"/>
+		android:layout_height="wrap_content"
+		android:textAppearance="?android:attr/textAppearanceLarge"
+		android:text="LargeText"
+		android:id="@+id/TempMin"
+		android:layout_gravity="center_horizontal"
+		android:layout_marginTop="59dp"
+		android:layout_alignParentTop="true"
+		android:layout_alignStart="@+id/Pressure"
+		android:layout_alignEnd="@+id/Pressure" />
 
-</LinearLayout>
+	<TextView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:textAppearance="?android:attr/textAppearanceLarge"
+		android:text="Large Text"
+		android:id="@+id/TempMax"
+		android:layout_gravity="center_horizontal"
+		android:layout_below="@+id/Pressure"
+		android:layout_centerHorizontal="true" />
+
+	<TextView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:textAppearance="?android:attr/textAppearanceLarge"
+		android:text="Large Text"
+		android:id="@+id/Pressure"
+		android:layout_gravity="center_horizontal"
+		android:layout_below="@+id/Temp"
+		android:layout_centerHorizontal="true" />
+
+	<TextView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:textAppearance="?android:attr/textAppearanceLarge"
+		android:text="Large Text"
+		android:id="@+id/Temp"
+		android:layout_gravity="center_horizontal"
+		android:layout_below="@+id/Humidity"
+		android:layout_alignEnd="@+id/TempMin" />
+
+	<TextView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:textAppearance="?android:attr/textAppearanceLarge"
+		android:text="Large Text"
+		android:id="@+id/Humidity"
+		android:layout_gravity="center_horizontal"
+		android:layout_alignTop="@+id/imageView"
+		android:layout_alignEnd="@+id/TempMin" />
+
+</RelativeLayout>

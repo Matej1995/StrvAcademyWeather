@@ -71,7 +71,8 @@ public class LocationInputFragment extends BaseFragment
 				.commit();
 
 		mLocationInput.setText("");
-		}else{	Toast.makeText(getActivity(), "Ahojky musíš zadat nějaké město",Toast.LENGTH_LONG).show();
+		}else {
+			Toast.makeText(getActivity(), "Field can not be empty", Toast.LENGTH_LONG).show();
 		}
 	}
 
