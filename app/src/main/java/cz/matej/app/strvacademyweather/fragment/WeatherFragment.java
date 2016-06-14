@@ -61,7 +61,7 @@ public class WeatherFragment extends BaseFragment implements RequestListener<Cur
 	@Override
 	public void onResponse(CurrentWeatherEntity entity)
 	{
-		setWeatherIcon("10d");
+		setWeatherIcon(entity.getWeather().get(0).getIcon());
 		Humidity.setText(String.valueOf(entity.getMain().getHumidity()));
 		Temp.setText(String.valueOf(entity.getMain().getTemp()));
 		Pressure.setText(String.valueOf(entity.getMain().getPressure()));
