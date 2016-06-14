@@ -61,13 +61,17 @@ public class WeatherFragment extends BaseFragment implements RequestListener<Cur
 	@Override
 	public void onResponse(CurrentWeatherEntity entity)
 	{
-		setWeatherIcon(entity.getWeather().get(0).getIcon());
-		Humidity.setText(String.valueOf(entity.getMain().getHumidity()));
-		Temp.setText(String.valueOf(entity.getMain().getTemp()));
-		Pressure.setText(String.valueOf(entity.getMain().getPressure()));
-		TempMax.setText(String.valueOf(entity.getMain().getTempMax()));
-		TempMin.setText(String.valueOf(entity.getMain().getTempMin()));
-
+		if(entity!=null) {
+			setWeatherIcon(entity.getWeather().get(0).getIcon());
+			Humidity.setText(String.valueOf(entity.getMain().getHumidity()));
+			Temp.setText(String.valueOf(entity.getMain().getTemp()));
+			Pressure.setText(String.valueOf(entity.getMain().getPressure()));
+			TempMax.setText(String.valueOf(entity.getMain().getTempMax()));
+			TempMin.setText(String.valueOf(entity.getMain().getTempMin()));
+		}
+		else {
+			Log.v(TAG+": onResponse (failure)", "Empty body received";
+		}
 	}
 
 	private void parseBundle()
