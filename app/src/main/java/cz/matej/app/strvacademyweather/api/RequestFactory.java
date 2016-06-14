@@ -40,6 +40,10 @@ public class RequestFactory implements ApiConfig
 		mOpenWeatherAPI = retrofit.create(OpenWeatherAPI.class);
 	}
 
+	public void getWeatherIcon()
+	{
+
+	}
 
 	public void getCurrentWeather(String location, final RequestListener<CurrentWeatherEntity> requestListener)
 	{
@@ -66,7 +70,6 @@ public class RequestFactory implements ApiConfig
 			}
 		});
 	}
-
 
 	private Map<String, String> getCurrentWeatherQueryMap(String location)
 	{

@@ -1,8 +1,11 @@
 package cz.matej.app.strvacademyweather.fragment;
 
 import android.os.Bundle;
+
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import cz.matej.app.strvacademyweather.R;
 import cz.matej.app.strvacademyweather.api.RequestFactory;
 import cz.matej.app.strvacademyweather.api.listener.RequestListener;
@@ -27,20 +30,24 @@ public class WeatherFragment extends BaseFragment implements RequestListener<Cur
 	}
 
 
+
 	private TextView Humidity;
 	private TextView Temp;
 	private TextView Pressure;
 	private TextView TempMax;
 	private TextView TempMin;
+	private ImageView mIconImageView;
 
 	@Override
 	public void initComponents()
 	{
+		this.mIconImageView = (ImageView) getRootView().findViewById(R.id.mIconImageView);
 		this.Humidity = (TextView) getRootView().findViewById(R.id.Humidity);
 		this.Temp = (TextView) getRootView().findViewById(R.id.Temp);
 		this.Pressure = (TextView) getRootView().findViewById(R.id.Pressure);
 		this.TempMax = (TextView) getRootView().findViewById(R.id.TempMax);
 		this.TempMin = (TextView) getRootView().findViewById(R.id.TempMin);
+
 	}
 
 
@@ -54,6 +61,7 @@ public class WeatherFragment extends BaseFragment implements RequestListener<Cur
 	@Override
 	public void onResponse(CurrentWeatherEntity entity)
 	{
+		setWeatherIcon("10d");
 		Humidity.setText(String.valueOf(entity.getMain().getHumidity()));
 		Temp.setText(String.valueOf(entity.getMain().getTemp()));
 		Pressure.setText(String.valueOf(entity.getMain().getPressure()));
@@ -76,4 +84,15 @@ public class WeatherFragment extends BaseFragment implements RequestListener<Cur
 	{
 		return R.layout.fragment_weather;
 	}
+	public static String getIconUrl(String iconID)
+	{
+		return "http://api.openweathermap.org/img/w/" +iconID+ ".png";
+	}
+
+	public void setWeatherIcon(String iconID)
+	{
+		Glide.with(this).load(getIconUrl(iconID)).into(this.mIconImageView);
+
+	}
+
 }

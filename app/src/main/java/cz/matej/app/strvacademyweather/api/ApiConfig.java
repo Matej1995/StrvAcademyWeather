@@ -12,4 +12,6 @@ public interface ApiConfig
 
 	String CURRENT_WEATHER = "weather";
 
+
+
 }
