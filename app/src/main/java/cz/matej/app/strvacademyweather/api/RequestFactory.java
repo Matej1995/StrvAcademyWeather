@@ -1,5 +1,7 @@
 package cz.matej.app.strvacademyweather.api;
 
+import android.util.Log;
+
 import java.util.Map;
 
 import cz.matej.app.strvacademyweather.api.listener.RequestListener;
