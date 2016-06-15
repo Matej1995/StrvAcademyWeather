@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">StrvAcademyWeather</string>
-    <string name="hint_city_input">Location</string>
-    <string name="button_find_weather">Find weather</string>
-    <string name="image_description">image</string>
+	<string name="app_name">Weather Application</string>
+	<string name="hint_city_input">Location</string>
+	<string name="button_find_weather">Find weather</string>
+	<string name="image_description">image</string>
 </resources>
