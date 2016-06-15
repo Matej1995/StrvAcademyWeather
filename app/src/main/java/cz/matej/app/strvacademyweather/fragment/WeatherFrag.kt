@@ -1,5 +1,6 @@
 package cz.matej.app.strvacademyweather.fragment
 
+import android.os.Bundle
 import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
@@ -19,6 +20,19 @@ class WeatherFrag : BaseFragment(), RequestListener<CurrentWeatherEntity> {
     private var mTempMaxView: TextView? = null
     private var mTempMinView: TextView? = null
     private var mIconImageView: ImageView? = null
+
+    companion object {
+        fun getInstance(location: String): WeatherFragment {
+            val fragment = WeatherFragment()
+
+            val bundle = Bundle()
+            bundle.putString("location", location)
+
+            fragment.arguments = bundle
+
+            return fragment
+        }
+    }
 
 
     override fun initComponents() {
