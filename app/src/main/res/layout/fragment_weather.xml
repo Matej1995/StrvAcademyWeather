@@ -1,68 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-			  android:layout_width="match_parent"
-			  android:layout_height="match_parent"
-				android:weightSum="1"
-				android:orientation="vertical">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			 xmlns:tools="http://schemas.android.com/tools"
+			 android:layout_width="match_parent"
+			 android:layout_height="match_parent"
+			 android:animateLayoutChanges="true"
+			 android:orientation="vertical">
 
-	<ImageView
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:id="@+id/mIconImageView"
-		android:layout_below="@+id/TempMin"
-		android:layout_alignParentStart="true"
-		android:layout_marginStart="44dp" />
-
-	<TextView
+	<LinearLayout
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:textAppearance="?android:attr/textAppearanceLarge"
-		android:text="LargeText"
-		android:id="@+id/TempMin"
-		android:layout_gravity="center_horizontal"
-		android:layout_marginTop="59dp"
-		android:layout_alignParentTop="true"
-		android:layout_alignStart="@+id/Pressure"
-		android:layout_alignEnd="@+id/Pressure" />
+		android:layout_height="match_parent"
+		android:orientation="vertical">
 
-	<TextView
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:textAppearance="?android:attr/textAppearanceLarge"
-		android:text="Large Text"
-		android:id="@+id/TempMax"
-		android:layout_gravity="center_horizontal"
-		android:layout_below="@+id/Pressure"
-		android:layout_centerHorizontal="true" />
+		<FrameLayout
+			android:layout_width="match_parent"
+			android:layout_height="@dimen/detail_header_height"
+			android:contentDescription="@string/image_description">
 
-	<TextView
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:textAppearance="?android:attr/textAppearanceLarge"
-		android:text="Large Text"
-		android:id="@+id/Pressure"
-		android:layout_gravity="center_horizontal"
-		android:layout_below="@+id/Temp"
-		android:layout_centerHorizontal="true" />
+			<ImageView
+				android:id="@+id/fragment_weather_header_imageview"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:scaleType="centerCrop"
+				android:src="@drawable/activity_bg"/>
 
-	<TextView
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:textAppearance="?android:attr/textAppearanceLarge"
-		android:text="Large Text"
-		android:id="@+id/Temp"
-		android:layout_gravity="center_horizontal"
-		android:layout_below="@+id/Humidity"
-		android:layout_alignEnd="@+id/TempMin" />
+			<TextView
+				android:id="@+id/fragment_weather_header_text"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="bottom|start"
+				android:padding="@dimen/header_text_padding"
+				android:textColor="#FFF"
+				android:textSize="@dimen/header_text_size"/>
+		</FrameLayout>
 
-	<TextView
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:textAppearance="?android:attr/textAppearanceLarge"
-		android:text="Large Text"
-		android:id="@+id/Humidity"
-		android:layout_gravity="center_horizontal"
-		android:layout_alignTop="@+id/imageView"
-		android:layout_alignEnd="@+id/TempMin" />
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical">
 
-</RelativeLayout>
+			<TextView
+				android:id="@+id/fragment_weather_current_temp"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:textSize="@dimen/info_text_size"
+				tools:text="Current: 36C"/>
+
+			<TextView
+				android:id="@+id/fragment_weather_min_temp"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:textSize="@dimen/info_text_size"
+				tools:text="Min: 36C"/>
+
+			<TextView
+				android:id="@+id/fragment_weather_max_temp"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:textSize="@dimen/info_text_size"
+				tools:text="Max: 36C"/>
+
+			<ImageView
+				android:id="@+id/fragment_weather_icon"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:contentDescription="@string/image_description"/>
+
+		</LinearLayout>
+	</LinearLayout>
+
+</FrameLayout>

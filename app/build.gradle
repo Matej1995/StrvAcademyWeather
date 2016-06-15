@@ -15,6 +15,10 @@ android {
 		release {
 			minifyEnabled false
 			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+			buildConfigField "boolean", "IN_DEVELOPMENT", "false"
+		}
+		debug {
+			buildConfigField "boolean", "IN_DEVELOPMENT", "true"
 		}
 	}
 }
@@ -25,6 +29,7 @@ dependencies {
 	compile 'com.android.support:design:23.4.0'
 	compile 'com.squareup.retrofit2:converter-gson:2.0.0'
 	compile 'com.squareup.retrofit2:retrofit:2.0.0'
+	compile 'com.squareup.okhttp3:logging-interceptor:3.2.0'
 	compile 'com.github.bumptech.glide:glide:3.7.0'
 
 }

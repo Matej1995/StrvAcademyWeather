@@ -2,20 +2,25 @@ package cz.matej.app.strvacademyweather.fragment;
 
 import android.os.Bundle;
 
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+
 import cz.matej.app.strvacademyweather.R;
 import cz.matej.app.strvacademyweather.api.RequestFactory;
 import cz.matej.app.strvacademyweather.api.listener.RequestListener;
 import cz.matej.app.strvacademyweather.entity.CurrentWeatherEntity;
+import cz.matej.app.strvacademyweather.entity.UnitsFormat;
+import cz.matej.app.strvacademyweather.utils.UnitsUtility;
 
 
 public class WeatherFragment extends BaseFragment implements RequestListener<CurrentWeatherEntity>
 {
 
 	public static final String TAG = WeatherFragment.class.toString();
+
 
 	public static WeatherFragment getInstance(String location)
 	{
@@ -30,24 +35,23 @@ public class WeatherFragment extends BaseFragment implements RequestListener<Cur
 	}
 
 
+	private TextView mHeaderTextView;
+	private TextView mMinimumTempTextView;
+	private TextView mMaximumTempTextView;
+	private TextView mCurrentTempTextView;
 
-	private TextView Humidity;
-	private TextView Temp;
-	private TextView Pressure;
-	private TextView TempMax;
-	private TextView TempMin;
-	private ImageView mIconImageView;
+	private ImageView mCurrentWeatherStateIcon;
+
 
 	@Override
 	public void initComponents()
 	{
-		this.mIconImageView = (ImageView) getRootView().findViewById(R.id.mIconImageView);
-		this.Humidity = (TextView) getRootView().findViewById(R.id.Humidity);
-		this.Temp = (TextView) getRootView().findViewById(R.id.Temp);
-		this.Pressure = (TextView) getRootView().findViewById(R.id.Pressure);
-		this.TempMax = (TextView) getRootView().findViewById(R.id.TempMax);
-		this.TempMin = (TextView) getRootView().findViewById(R.id.TempMin);
+		mHeaderTextView = (TextView) getRootView().findViewById(R.id.fragment_weather_header_text);
+		mMinimumTempTextView = (TextView) getRootView().findViewById(R.id.fragment_weather_min_temp);
+		mMaximumTempTextView = (TextView) getRootView().findViewById(R.id.fragment_weather_max_temp);
+		mCurrentTempTextView = (TextView) getRootView().findViewById(R.id.fragment_weather_current_temp);
 
+		mCurrentWeatherStateIcon = (ImageView) getRootView().findViewById(R.id.fragment_weather_icon);
 	}
 
 
@@ -61,18 +65,21 @@ public class WeatherFragment extends BaseFragment implements RequestListener<Cur
 	@Override
 	public void onResponse(CurrentWeatherEntity entity)
 	{
-		if(entity!=null) {
-			setWeatherIcon(entity.getWeather().get(0).getIcon());
-			Humidity.setText(String.valueOf(entity.getMain().getHumidity()));
-			Temp.setText(String.valueOf(entity.getMain().getTemp()));
-			Pressure.setText(String.valueOf(entity.getMain().getPressure()));
-			TempMax.setText(String.valueOf(entity.getMain().getTempMax()));
-			TempMin.setText(String.valueOf(entity.getMain().getTempMin()));
+		if(entity != null)
+		{
+			mHeaderTextView.setText(entity.getName());
+			mCurrentTempTextView.setText("Current: ".concat(String.valueOf(entity.getMain().getTemp()).concat(UnitsUtility.getUnitForSystem(UnitsFormat.METRIC))));
+			mMinimumTempTextView.setText("Minimum: ".concat(String.valueOf(entity.getMain().getTempMin()).concat(UnitsUtility.getUnitForSystem(UnitsFormat.METRIC))));
+			mMaximumTempTextView.setText("Maximum: ".concat(String.valueOf(entity.getMain().getTempMax()).concat(UnitsUtility.getUnitForSystem(UnitsFormat.METRIC))));
+
+			setWeatherIcon(entity.getWeatherItem().getIcon());
 		}
-		else {
-			Log.v(TAG+": onResponse (failure)", "Empty body received";
+		else
+		{
+			Log.v(TAG + ": onResponse (failure)", "Empty body received");
 		}
 	}
+
 
 	private void parseBundle()
 	{
@@ -88,15 +95,17 @@ public class WeatherFragment extends BaseFragment implements RequestListener<Cur
 	{
 		return R.layout.fragment_weather;
 	}
+
+
 	public static String getIconUrl(String iconID)
 	{
-		return "http://api.openweathermap.org/img/w/" +iconID+ ".png";
+		return "http://api.openweathermap.org/img/w/" + iconID + ".png";
 	}
+
 
 	public void setWeatherIcon(String iconID)
 	{
-		Glide.with(this).load(getIconUrl(iconID)).into(this.mIconImageView);
-
+		Glide.with(this).load(getIconUrl(iconID)).into(this.mCurrentWeatherStateIcon);
 	}
 
 }

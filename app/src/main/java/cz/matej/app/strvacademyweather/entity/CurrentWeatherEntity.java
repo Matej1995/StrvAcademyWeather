@@ -116,6 +116,12 @@ public class CurrentWeatherEntity
 	}
 
 
+	public Weather getWeatherItem()
+	{
+		return weather.get(0);
+	}
+
+
 	/**
 	 * @param weather The weather
 	 */
