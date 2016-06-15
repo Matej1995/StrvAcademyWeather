@@ -1,11 +1,12 @@
 package cz.matej.app.strvacademyweather.fragment;
 
 import android.os.Bundle;
-
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+
 import cz.matej.app.strvacademyweather.R;
 import cz.matej.app.strvacademyweather.api.RequestFactory;
 import cz.matej.app.strvacademyweather.api.listener.RequestListener;
@@ -16,6 +17,7 @@ public class WeatherFragment extends BaseFragment implements RequestListener<Cur
 {
 
 	public static final String TAG = WeatherFragment.class.toString();
+
 
 	public static WeatherFragment getInstance(String location)
 	{
@@ -30,13 +32,13 @@ public class WeatherFragment extends BaseFragment implements RequestListener<Cur
 	}
 
 
-
 	private TextView Humidity;
 	private TextView Temp;
 	private TextView Pressure;
 	private TextView TempMax;
 	private TextView TempMin;
 	private ImageView mIconImageView;
+
 
 	@Override
 	public void initComponents()
@@ -61,7 +63,8 @@ public class WeatherFragment extends BaseFragment implements RequestListener<Cur
 	@Override
 	public void onResponse(CurrentWeatherEntity entity)
 	{
-		if(entity!=null) {
+		if(entity != null)
+		{
 			setWeatherIcon(entity.getWeather().get(0).getIcon());
 			Humidity.setText(String.valueOf(entity.getMain().getHumidity()));
 			Temp.setText(String.valueOf(entity.getMain().getTemp()));
@@ -69,10 +72,12 @@ public class WeatherFragment extends BaseFragment implements RequestListener<Cur
 			TempMax.setText(String.valueOf(entity.getMain().getTempMax()));
 			TempMin.setText(String.valueOf(entity.getMain().getTempMin()));
 		}
-		else {
-			Log.v(TAG+": onResponse (failure)", "Empty body received";
+		else
+		{
+			Log.v(TAG + ": onResponse (failure)", "Empty body received");
 		}
 	}
+
 
 	private void parseBundle()
 	{
@@ -88,10 +93,13 @@ public class WeatherFragment extends BaseFragment implements RequestListener<Cur
 	{
 		return R.layout.fragment_weather;
 	}
+
+
 	public static String getIconUrl(String iconID)
 	{
-		return "http://api.openweathermap.org/img/w/" +iconID+ ".png";
+		return "http://api.openweathermap.org/img/w/" + iconID + ".png";
 	}
+
 
 	public void setWeatherIcon(String iconID)
 	{
