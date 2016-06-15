@@ -32,7 +32,7 @@ class WeatherFrag : BaseFragment(), RequestListener<CurrentWeatherEntity> {
     }
 
     override fun getLayoutID(): Int {
-        return R.layout.fragment_weather;
+        return R.layout.fragment_weather
     }
 
     override fun onResponse(entity: CurrentWeatherEntity?) {
